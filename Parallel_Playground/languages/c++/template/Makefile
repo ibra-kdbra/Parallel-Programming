@@ -14,3 +14,4 @@ gcc: main.cpp Util.hpp
 
 clean:
 	rm -f ./intel ./llvmclang ./gnugcc
+
