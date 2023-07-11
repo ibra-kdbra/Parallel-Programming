@@ -1,10 +1,6 @@
-// 2 реализации на OMP: через sections и tasks. Текущая версия работает через sections, чтобы получить версию, работающую через tasks, 
-// неоходимо раскоментировать код и убрать блок кода с sections. Sections в лучшем случае позволяют получить выигрыш по времени в 2 раза 
-// (у меня вышло намного меньше, в лучшем случае ~1.25), поэтому, чтобы выигрыш был пропорционален количеству потоков, лучше использовать tasks
-// (но я не проверяла, что таски действительно дают хороший выигрыш, это чисто теоретически).
-// НО!!! tasks появляются в 3 версии OMP, т.е. в OMP 3.0, а Visual Studio поддерживает только версию 2.0. Так что жопа будет больно болеть, если 
-// захотите использовать таски в вижуал студии.
+// 2 OMP implementations: using sections and tasks. The current version works using sections. To obtain a version that works using tasks, uncomment the code and remove the code block with sections. In the best case, sections allow for a time gain of up to 2 times (in my case, it was much less, at best ~1.25). Therefore, to obtain a gain proportional to the number of threads, it is better to use tasks (but I have not verified whether tasks actually provide a good gain; this is purely theoretical).
 
+// HOWEVER!!! Tasks appear in OMP version 3.0, while Visual Studio only supports version 2.0. So, if you want to use tasks in Visual Studio, you will run into problems.
 #include <iostream>
 #include <vector>
 #include <chrono>
