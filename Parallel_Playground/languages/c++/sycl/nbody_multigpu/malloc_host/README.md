@@ -30,7 +30,7 @@ Requires intel branch of llvm with SYCL support for CUDA
 
  nPart = 2000; nSteps = 500; dt = 0.1
 
-### **Expected result for this input kenergy = 571.53**
+### Expected result for this input kenergy = 571.53
 
  ------------------------------------------------
 
