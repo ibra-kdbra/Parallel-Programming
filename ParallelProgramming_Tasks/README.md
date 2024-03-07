@@ -1,4 +1,5 @@
 # Tasks on Parallel Programming in C++
+
 ## OMP
 
 1.Write a program where each thread prints its identifier, the total number of threads, and the string "HelloWorld". Run the program with 8 threads. Is the output always identical? Why?
@@ -10,10 +11,10 @@
 4.Write a program that declares and assigns initial values to integer arrays a[10] and b[10]. Define a parallel region with a number of threads set to 2, and allocate code for the main thread (number 0) and the thread with number 1. The main thread should find the minimum value of the elements of array a, and the thread with number 1 should find the maximum value of the elements of array b. Output the result to the screen.
 
 5.Write a program that declares and assigns initial values to the elements of a two-dimensional array d[6][8]. Use a random number generator to initialize the values. Using the sections...section directive construct, define three sections to perform the following operations:
-	The first section calculates the arithmetic mean of the elements in the two-dimensional array.
-	The second section calculates the minimum and maximum values of the elements in the two-dimensional array.
-	The third section calculates the number of array elements whose numeric values are multiples of 3.
-	In each section, determine and output to the screen the thread number and the result of the calculations. Use iteration-type work-sharing constructs.
+ The first section calculates the arithmetic mean of the elements in the two-dimensional array.
+ The second section calculates the minimum and maximum values of the elements in the two-dimensional array.
+ The third section calculates the number of array elements whose numeric values are multiples of 3.
+ In each section, determine and output to the screen the thread number and the result of the calculations. Use iteration-type work-sharing constructs.
 
 6.Write a program that declares and assigns initial values to integer arrays a[10] and b[10]. Using the parallel for construct and reduction, calculate the arithmetic means of the elements of arrays a and b, compare the results, and output the result to the screen.
 
@@ -29,12 +30,11 @@
 
 12.Modify task 1 so that threads print their identifiers in reverse order. There are at least 5 ways to solve this problem. Try to find as many as possible.
 
-13.Given an array of integers representing a decimal number in binary form, write a parallel program to compute the decimal value. int a[30] = {1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1}; The number x can be represented in a base p system as x = an * pn + an-1 * pn-1 + a1 * p1 + a0 * p0, where an ... a0 are the digits in the representation of the given number.
+13.Given an array of integers representing a decimal number in binary form, write a parallel program to compute the decimal value. int a[30] = {1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1}; The number x can be represented in a base p system as x = an *pn + an-1* pn-1 + a1 *p1 + a0* p0, where an ... a0 are the digits in the representation of the given number.
 
 14.Write a parallel program to compute the square of the number 2^10 without using multiplication. Explanation: The square of a natural number N is equal to the sum of the first N odd numbers. For example, 32 = 9 is 1+3+5=9; 52 = 25 is 1+3+5+7+9=25;
 
 15.Write a program that uses the features of OpenMP to find all prime numbers in a range specified from the keyboard. Determine the number of threads independently. Output the result to the screen.
-
 
 __________________________________________________________
 
@@ -81,7 +81,6 @@ __________________________________________________________
 5.2. Create a data type using the MPI_Type_create_struct function and scatter rows of matrix 'a' (8x8) to a 2x8 matrix 'd' on 4 processes according to the following scheme: rows 0 and 4 to process 0, rows 1 and 5 to process 1, rows 2 and 6 to process 2, and rows 3 and 7 to process 3.
 
 5.3. Create a new group consisting of processes with ranks 8, 3, 9, 1, and 6. Using the MPI_Comm_create(...) constructor, create a communicator for the group. Declare and fill a one-dimensional array of real numbers on process 0 of the created group and print it to the screen. Use the MPI_Bcast function to broadcast the array to all processes in the created group. Print the received arrays to the screen. Send the received array from the last process of the new group to process 0 of the original group. Run the program on 10 processes.
-
 
 __________________________________________________________
 
