@@ -28,8 +28,6 @@ Now, check that the `mpi4py` package installed correctly:
 4\
 4
 
-
-
 ## 1. Example 1
 
 ### Writing Hello World
@@ -236,8 +234,6 @@ Add arrays time: 4.173098087310791\
 Average result time: 2.609341859817505\
 Average: 5000001.5
 
-
-
 ### Point-to-Point Communication
 
 You can try running this on multiple ranks now:
@@ -285,7 +281,7 @@ To do this, replace the line `average = sum / N` with:
     if my_rank == 0:
         world_sum = sum
         for i in range( 1, world_size ):
-      	    sum_np = np.empty( 1 )
+           sum_np = np.empty( 1 )
             world_comm.Recv( [sum_np, MPI.DOUBLE], source=i, tag=77 )
             world_sum += sum_np[0]
         average = world_sum / N
@@ -303,12 +299,12 @@ If you are communicating information of a different datatype, consult the follow
 |`MPI.BYTE`           |8 binary digits     |
 |`MPI.CHAR`           |char                |
 |`MPI.UNSIGNED_CHAR`  |unsigned char       |
-|`MPI.SHORT`          |signed short int	 |	 
-|`MPI.UNSIGNED_SHORT` |unsigned short int	 |	 
+|`MPI.SHORT`          |signed short int  |  
+|`MPI.UNSIGNED_SHORT` |unsigned short int  |  
 |`MPI.INT`            |signed int          |
-|`MPI.UNSIGNED`       |unsigned int	 |	 
-|`MPI.LONG`           |signed long int	 |	 
-|`MPI.UNSIGNED_LONG`  |unsigned long int	 |	 
+|`MPI.UNSIGNED`       |unsigned int  |  
+|`MPI.LONG`           |signed long int  |  
+|`MPI.UNSIGNED_LONG`  |unsigned long int  |  
 |`MPI.FLOAT`          |float               |
 |`MPI.DOUBLE`         |double              |
 
@@ -357,8 +353,6 @@ Add arrays time: 1.2048840522766113\
 Average result time: 0.7626049518585205\
 Average: 5000001.5
 
-
-
 ### Reducing the Memory Footprint
 
 The simulation is running much faster now thanks to the parallelization we have added.
@@ -398,9 +392,6 @@ Add arrays time: 1.2081310749053955\
 Average result time: 0.7307591438293457\
 Average: 5000001.5
 
-
-
-
 ### Collective Communication
 
 Previously, we used **point-to-point communication** (i.e. `Send` and `Recv`) to sum the results across all ranks:
@@ -428,6 +419,7 @@ Replace the above with:
     world_comm.Reduce( [sum, MPI.DOUBLE], [world_sum, MPI.DOUBLE], op = MPI.SUM, root = 0 )
     average = world_sum / N
 ```
+
 The `op` argument lets us specify what operation should be performed on all of the data that is reduced.
 Setting this argument to `MPI.SUM`, as we do above, causes all of the values to be summed onto the root process.
 There are many other operations provided by MPI, as you can see here:
@@ -448,8 +440,6 @@ There are many other operations provided by MPI, as you can see here:
 |`MPI.MINLOC`    |min value and location|float|
 
 Note that in addition to enabling us to write simpler-looking code, collective communication operations tend to be faster than what we can achieve by trying to write our own communication operations using point-to-point calls.
-
-
 
 ## Example 3
 
@@ -681,9 +671,9 @@ At the end of the `for` loop in `main` is the following code:
 
         energy_array[i_step] = total_energy
 
-	if np.mod(i_step + 1, freq) == 0:
+ if np.mod(i_step + 1, freq) == 0:
             if my_rank == 0:
-	       print(i_step + 1, energy_array[i_step])
+        print(i_step + 1, energy_array[i_step])
 
             if tune_displacement:
                 max_displacement, n_trials, n_accept = adjust_displacement(n_trials, n_accept, max_displacement)
@@ -743,8 +733,6 @@ This time the results are much more consistent with what we expect.
 
 ## Additional Considerations
 
-
-
 ### Asynchronous Communication
 
 * When a non-blocking send function ([`MPI_Isend`](https://www.mpich.org/static/docs/v3.2/www3/MPI_Isend.html)) completes, the user must not modify the send buffer until the request is known to have completed (e.g., using ([`MPI_Test`](https://www.mpich.org/static/docs/v3.2/www3/MPI_Test.html)) or [`MPI_Wait`](https://www.mpich.org/static/docs/v3.2/www3/MPI_Wait.html)).
@@ -755,6 +743,7 @@ This time the results are much more consistent with what we expect.
     int MPI_Isend(const void *buf, int count, MPI_Datatype datatype, int dest, int tag,  MPI_Comm comm, MPI_Request *request);
     int MPI_Irecv(void *buf, int count, MPI_Datatype datatype, int source,  int tag, MPI_Comm comm, MPI_Request *request);
 ```
+
 * `request` --- a pointer to structure that will hold the information and status for the request
 
 ```c++
@@ -762,16 +751,16 @@ This time the results are much more consistent with what we expect.
     int MPI_Wait(MPI_Request *request, MPI_Status *status);
     int MPI_Cancel(MPI_Request *request);
 ```
+
 * `request` --- a pointer to the request being tested/waited-upon/cancelled
 * `flag` --- a pointer to an int that will be non-zero (true) if the operation has completed
 * `status` --- a pointer to the structure in which status will be stored if the operation has completed
 * See also `MPI_Waitall`, `MPI_Waitany` and `MPI_Waitsome` for waiting on multiple requests
 
-
-
 ### MPI Batch Scripts
 
 Here's an example batch job ([`exercises/mpihello.pbs`](https://github.com/wadejong/Summer-School-Materials/blob/master/Tuesday-afternoon/exercises/mpihello.pbs)) for SeaWulf annotated so show what is going on:
+
 ~~~
     #!/bin/bash
     #PBS -l nodes=2:ppn=24,walltime=00:02:00
@@ -808,10 +797,10 @@ Here's an example batch job ([`exercises/mpihello.pbs`](https://github.com/wadej
 ~~~
 
 Submit the job from the directory holding your executable (or modify the batch script to use the full path to your executable)
+
 ~~~
     qsub mpihello.pbs
 ~~~
-
 
 ### Load Balancing
 
@@ -840,4 +829,3 @@ Bisection bandwidth is another important concept especially if you are doing a l
 Thus, the communication intensity and the communication pattern of your application are both important.  Spreading communication over a larger period of time is a possible optimization.  Another is trying to communicate only to processes that are close in the sense of distance (wires traversed) on the actual network.
 
 For global communication, the details are more complicated because a broadcast or reduction is executed on an MPI-implementation-specific tree of processes that is mapped to the underlying network topology.  However, for long messages an optimized implementation should be able to deliver similar bandwidth to that of the point-to-point communication, with a latency that grows roughly logarithmically with the number of MPI processes.
-
