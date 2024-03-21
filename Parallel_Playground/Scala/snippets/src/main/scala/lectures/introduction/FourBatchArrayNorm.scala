@@ -10,19 +10,20 @@ object FourBatchArrayNorm {
 
   val logE = math.log(math.E)
 
-  def power(x: Int, p: Double): Int = {
-    math.exp(p * math.log(x) / logE).toInt // TODO <-- make everything doubles
+  def power(x: Double, p: Double): Double = {
+    math.exp(p * math.log(x) / logE) // TODO <-- make everything doubles
   }
 
   def sumSegment(xs: Array[Int], p: Double, from: Int, until: Int): Int = {
     var i = from
     var s = 0
     while (i < until) {
-      s += power(xs(i), p)
+      s += power(xs(i).toDouble, p).toInt
       i += 1
     }
     s
   }
+}
 
   def normSum(xs: Array[Int], p: Double): Int =
     power(sumSegment(xs, p, 0, xs.size), 1.0 / p)
