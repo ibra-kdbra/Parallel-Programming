@@ -50,3 +50,7 @@ This repository includes work from other contributors. Credits will be shared in
 - MPI Official Documentation
 
 Happy coding and exploring!
+
+## Roadmap
+
+<img src="./roadmap.jpg" alt="roadmap"/>
