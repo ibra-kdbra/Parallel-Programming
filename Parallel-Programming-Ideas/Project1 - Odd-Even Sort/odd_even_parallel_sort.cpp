@@ -153,9 +153,8 @@ int main(int argc, char** argv) {
     if (rank == 0){ // record time (only executed in master process)
         t2 = std::chrono::high_resolution_clock::now();  
         time_span = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1);
-        std::cout << "Student ID: " << "119020038" << std::endl;
-        std::cout << "Name: " << "Xi Mao" << std::endl;
-        std::cout << "Assignment 1" << std::endl;
+        std::cout << "Name: " << "ibra-kdbra" << std::endl;
+        std::cout << "Project 1" << std::endl;
         std::cout << "Run Time: " << time_span.count() << " seconds" << std::endl;
         std::cout << "Input Size: " << num_elements << std::endl;
         std::cout << "Process Number: " << world_size << std::endl; 
