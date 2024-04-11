@@ -15,15 +15,16 @@ Then, specify the number of elements to be sorted, and the file name.
 ```sh
 ./gen $number_of_elements_to_sort $save_file_name # Replace $variable with your own value.
 ```
-For example, to generate a dataset with `10000` elements and name it as `./test_data/10000a.in`, 
+
+For example, to generate a dataset with `10000` elements and name it as `./test_data/10000a.in`,
+
 ```sh
 ./gen 10000 ./test_data/10000a.in
 ```
+
 Then you will find `10000a.in` in `./test_data` directory.
 
 You can generate many datasets and use them to test your program.
-
-
 
 ## Sequential Odd Even Transposition Sort
 
@@ -45,10 +46,7 @@ For example,
 ./ssort 10000 ./test_data/10000a.in
 ```
 
-
 The program will generate an output file called `10000a.in.seq.out` in `./test_data`.
-
-
 
 ## Parallel Odd Even Transposition Sort
 
@@ -79,10 +77,9 @@ mpirun -np 8 ./psort 10000 ./test_data/10000a.in
 
 The program will generate an output file called `10000a.in.parallel.out` in `./test_data`.
 
-
 ## Check the correctness of your program
 
-`check_sorted.cpp` is a tool for you to check if your sorting reuslt is correct. 
+`check_sorted.cpp` is a tool for you to check if your sorting reuslt is correct.
 
 To use it, first you should compile it,
 
@@ -103,7 +100,8 @@ For example, if we want to check the output file `./test_data/10000a.in.parallel
 ```
 
 The output will be like (but not identical):
-```
+
+```sh
 Not Sorted. 4983 errors.
 ```
 
